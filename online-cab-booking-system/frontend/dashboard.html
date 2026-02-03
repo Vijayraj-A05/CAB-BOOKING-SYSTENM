@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CabConnect - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="d-flex align-center gap-2">
+            <i class="fa-solid fa-taxi"></i>
+            <h1>CabConnect</h1>
+        </div>
+        <i class="fa-solid fa-power-off header-icon" id="logout-btn" title="Logout"></i>
+    </header>
+
+    <div class="app-container" style="box-shadow: none; padding-bottom: 70px;">
+
+        <!-- Welcome Section -->
+        <div class="p-3 bg-primary"
+            style="background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); color: white; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; margin-bottom: 20px;">
+            <p class="text-sm opacity-90" style="opacity: 0.9">Welcome back,</p>
+            <h2 id="user-name" class="mt-1">Rider</h2>
+        </div>
+
+        <!-- Main Actions -->
+        <div class="p-2">
+            <h3 class="mb-2 text-muted text-sm">WHAT WOULD YOU LIKE TO DO?</h3>
+
+            <a href="book-cab.html" class="card d-flex align-center gap-2 mb-3 animate-slide-up"
+                style="text-decoration: none; color: inherit; animation-delay: 0.1s;">
+                <div
+                    style="background: var(--light-bg); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-size: 1.5rem;">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.1rem;">Book a Ride</h3>
+                    <p class="text-sm text-muted">Go somewhere new</p>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="margin-left: auto; color: var(--gray-500);"></i>
+            </a>
+
+            <a href="history.html" class="card d-flex align-center gap-2 mb-3 animate-slide-up"
+                style="text-decoration: none; color: inherit; animation-delay: 0.2s;">
+                <div
+                    style="background: var(--light-bg); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--secondary-color); font-size: 1.5rem;">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.1rem;">Ride History</h3>
+                    <p class="text-sm text-muted">View past trips</p>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="margin-left: auto; color: var(--gray-500);"></i>
+            </a>
+
+            <!-- Promo Banner -->
+            <div class="card bg-dark animate-slide-up"
+                style="background: #333; color: white; animation-delay: 0.3s; border: none;">
+                <div class="d-flex justify-between align-center">
+                    <div>
+                        <h4 style="color: var(--secondary-color);">Get 20% OFF</h4>
+                        <p class="text-sm mt-1">Use code <strong>CAB20</strong></p>
+                    </div>
+                    <i class="fa-solid fa-gift" style="font-size: 2rem; opacity: 0.2"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+        <a href="dashboard.html" class="nav-item active">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+        <a href="book-cab.html" class="nav-item">
+            <i class="fa-solid fa-car-side"></i>
+            Book
+        </a>
+        <a href="history.html" class="nav-item">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            History
+        </a>
+    </nav>
+
+    <script src="js/storage.js"></script>
+    <script>
+        checkAuth();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = Storage.getCurrentUser();
+            if (user) {
+                document.getElementById('user-name').textContent = user.name;
+            }
+
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                if (confirm('Are you sure you want to logout?')) {
+                    Storage.logout();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
